@@ -10,7 +10,7 @@ int inputPin = A0;            //de pin met de sensor
 
 //instellen lednummers en vergelijkingswaarden
 const int Asize = 8;
-int led[Asize] = {13, 10, 9, 8, 7, 6, 5};
+int led[Asize] = {13, 12, 10, 8, 7, 5, 3};
 int relatives[Asize] = {30, 200, 400, 600, 700, 800, 900};
 const int Yksize = 43;
 int from[Yksize] = {0, 690, 759, 761 ,780, 793, 806, 814, 821, 828, 836, 842, 847, 852, 856, 860, 864, 867, 874, 883, 886, 889, 891, 894, 898, 900, 903, 913, 919, 924, 929, 932, 936, 939, 941, 944, 946, 950, 953, 956, 958, 1023};

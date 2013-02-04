@@ -24,8 +24,12 @@ int PWMB = 5; //Speed control
 int BIN1 = 11; //Direction
 int BIN2 = 12; //Direction
 
+//sensor instellen op 50 cm
+const int InfraredSensorPin = 14;
+
 void setup() {
  Serial.begin(57600);
+ pinMode(InfraredSensorPin,INPUT);
  ps2x.config_gamepad(6,2,7,4, false, false); 
  for (int thisReading = 0; thisReading < numReadings; thisReading++) {
     Yreadings[thisReading] = 0;
@@ -34,6 +38,12 @@ void setup() {
 }
 
 void loop() {
+  while (digitalRead(InfraredSensorPin) == LOW) {
+    move(1, 200, 0); //motor 1, full speed, left
+    move(2, 50, 0); //motor 2, zero speed, left
+    delay(100);
+  }
+
   ps2x.read_gamepad();
   byte preYvar = ps2x.Analog(PSS_RY);
   byte preXvar = ps2x.Analog(PSS_LX);
@@ -83,7 +93,7 @@ void loop() {
         break;
       default:
         move(1, velo, 0); //motor 1, full speed, left
-        move(2, (velo), 0); //motor 2, full speed, left
+        move(2, velo, 0); //motor 2, full speed, left
     }
   }
   else if (Yaverage > 136) {

@@ -38,10 +38,11 @@ void setup() {
 }
 
 void loop() {
+  // Avoid Collision Take-Over
   while (digitalRead(InfraredSensorPin) == LOW) {
-    move(1, 200, 0); //motor 1, full speed, left
-    move(2, 50, 0); //motor 2, zero speed, left
-    delay(100);
+    move(1, 255, 0); //motor 1, full speed, left
+    move(2, 25, 0); //motor 2, zero speed, left
+    delay(500);
   }
 
   ps2x.read_gamepad();
